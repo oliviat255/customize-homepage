@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Search from './Search';
+
 
 function App() {
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get('s');
+  const [searchQuery, setSearchQuery] = useState(query || '');
+  const initialCityState = { city: "", state: "" };
+  // const [cityState, setCityState] = useState(initialCityState);
+  // const [zipcode, setZipcode] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>City/State Lookup Tool</h1>
+      <Search 
+         searchQuery={searchQuery}
+         setSearchQuery={setSearchQuery}
+         />
     </div>
   );
 }
