@@ -1,10 +1,25 @@
 import React from "react";
 import getDispensaryByZipcode from "./getDispensaries";
+import dispensaryInfo from "./DispensaryInfo"; 
+
+export class UserInfo extends React.Component {
+    constructor(props) {
+      super(props)
+      }
+  
+      render() {
+          return (
+          <div>
+            <h4>{this.props.value}</h4>
+          </div>
+        )
+      }
+  } 
 
 export default class Search extends React.Component { 
     constructor(props) { 
         super(props); 
-        this.state = {value: ''};
+        this.state = {value: '', submitted: false};
         this.handleSubmit = this.handleSubmit.bind(this); 
         this.handleChange = this.handleChange.bind(this); 
     }
@@ -15,12 +30,18 @@ export default class Search extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        console.log("The submit button was clicked.") 
+        this.setState({submitted: true} )
         var toReturn = getDispensaryByZipcode(this.state.value)
-        console.log(toReturn)
+        this.setState({value: toReturn})
     }
+    renderDispensaryInfo(){ 
+        console.log("IN RENDER DISPENSARY INFO"); 
+        <UserInfo value={this.state.value}> </UserInfo>
+    }
+
     render() { 
         return (
+            <div>
             <form action="/" method="get">
             <label htmlFor="header-search">
                 <span className="visually-hidden">Enter Delivery Address</span>
@@ -29,7 +50,7 @@ export default class Search extends React.Component {
                 value={this.state.value}
                 type="text"
                 id="header-search"
-                placeholder="Search blog posts"
+                placeholder="Enter Delivery Address"
                 name="s" 
                 onChange={this.handleChange}
             />
@@ -37,6 +58,8 @@ export default class Search extends React.Component {
             Search
             </button>
         </form>
+        {this.renderDispensaryInfo()}
+        </div>
         )
     }
 }

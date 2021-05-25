@@ -1,34 +1,39 @@
-const KEY = process.env.GOOGLE_API_KEY
-
-// todo - stop hardcoding url
-const BASE_URI = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.60037,-119.77567&radius=16093.4&keyword=dispensary&key=${KEY}&opennow=true&rankby=prominence`
+const KEY = process.env.REACT_APP_GOOGLE_API_KEY
+const URI = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.60037,-119.77567&radius=16093.4&keyword=dispensary&opennow=true&rankby=prominence&key=${KEY}`
 
 var requestOptions = {
     method: 'GET', 
-    redirect: 'follow'
+    redirect: 'follow',
 }
+// var geocoder; 
+// function getLatLngByZipcode(zipcode) 
+// {
+//     geocoder = new google.maps.Geocoder();
+//     var address = zipcode;
+//     geocoder.geocode({ 'address': 'zipcode '+address }, function (results, status) {
+//         if (status == google.maps.GeocoderStatus.OK) {
+//             var latitude = results[0].geometry.location.lat();
+//             var longitude = results[0].geometry.location.lng();
+//             alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+//         } else {
+//             alert("Request failed.")
+//         }
+//     });
+//     return `${latitude},${longitude}`;
+// }
 
+function constructUrl(zipcode) { 
+    // convert zipcode to latLong
+    // var latLng = getLatLngByZipcode(zipcode)
+    var latLng = "39.60037,-119.77567"
+    const URI = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng}&radius=16093.4&keyword=dispensary&opennow=true&rankby=prominence&key=${KEY}`
+} 
 
 export default function getDispensaryByZipcode (zipcode) { 
-    fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.60037,-119.77567&radius=16093.4&keyword=dispensary&key=${KEY}&opennow=true&rankby=prominence`, requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    // try { 
-    //     // const response =  fetch(`${BASE_URI}`, requestOptions); 
-
-    //     // if (!response.ok){ 
-    //     //     return {statusCode: response.status, body: response }; 
-    //     // }
-    //     // const data = response.JSON
-    //     // return { 
-    //     //     statusCode: 200,git 
-    //     //     body: data
-    //     // }; 
-    // } catch (err) { 
-    //     return {
-    //         statusCode: 500,
-    //         body: JSON.stringify({ msg: err.message }),
-    //       };
-    // }
+    console.log("zipcode", zipcode)
+    constructUrl(zipcode)
+    fetch(URI, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 };
