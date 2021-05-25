@@ -1,6 +1,5 @@
 import React from "react";
 import getDispensaryByZipcode from "./getDispensaries";
-import dispensaryInfo from "./DispensaryInfo"; 
 
 export class UserInfo extends React.Component {
     constructor(props) {
@@ -10,7 +9,7 @@ export class UserInfo extends React.Component {
       render() {
           return (
           <div>
-            <h4>{this.props.value}</h4>
+            <h4>{"Hello world!!!!"}</h4>
           </div>
         )
       }
@@ -34,10 +33,6 @@ export default class Search extends React.Component {
         var toReturn = getDispensaryByZipcode(this.state.value)
         this.setState({value: toReturn})
     }
-    renderDispensaryInfo(){ 
-        console.log("IN RENDER DISPENSARY INFO"); 
-        <UserInfo value={this.state.value}> </UserInfo>
-    }
 
     render() { 
         return (
@@ -58,7 +53,6 @@ export default class Search extends React.Component {
             Search
             </button>
         </form>
-        {this.renderDispensaryInfo()}
         </div>
         )
     }
