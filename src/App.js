@@ -11,11 +11,13 @@ var requestOptions = {
 
 export default function App() {
   const [dispensaries, setDispensaries] = useState(null);
-  const fetchData = fetch(URI, requestOptions)
-  .then(response => response.text())
-  .then(result => JSON.parse(result))
-  .then(json => setDispensaries(json.results))
-  .catch(error => console.log('error', error));
+  const fetchData = async () => {
+    await fetch(URI, requestOptions)
+    .then(response => response.text())
+    .then(result => JSON.parse(result))
+    .then(json => setDispensaries(json.results))
+    .catch(error => console.log('error', error));
+  }
 
   return (
     <div className="App">
