@@ -1,4 +1,4 @@
-# Blackbird Interviews
+# Blackbird Interview
 
 I created this project to demonstrate my ability to drive technology for an interview at Blackbird on 5/25/21. 
 
@@ -10,5 +10,5 @@ Frontend: React, Javascript
 Backend: Google Maps Platform 
 
 ## Limitations 
-If this were to be inplemented the backend would need to connect to the Blackbird backend. An example for how I would design such a backend can be found here. 
+If this were to be implemented the backend would need to connect to the Blackbird backend. An example for how I would design such a backend can be found here. 
 https://drive.google.com/file/d/1kwdNfnILqK19PM931lZsoVv0seY_74TD/view?usp=sharing
