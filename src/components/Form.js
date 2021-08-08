@@ -26,7 +26,8 @@ function isValidUSZip(zipcode) {
 
 function Form(props) {
   const [zip, setZip] = useState('');
-
+  const [dispensaries, setDispensaries] = useState(null);
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -48,14 +49,14 @@ function Form(props) {
         let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=16093.4&keyword=dispensary&opennow=true&rankby=prominence&key=${PLACES_KEY}`
         return fetch(url, getOptions); 
       }).then(function (response){
+        setDispensaries(response.results)
         console.log("response", response.json()); 
-        return response.json(); 
+        return response; 
       }).catch(function(error){ 
         // TODO: make error handling better here
-        console.log("error");
+        console.log("error", error);
       });
   }
-
 
   function handleChange(e) {
     setZip(e.target.value);

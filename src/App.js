@@ -25,7 +25,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Local Favorites</h1>
-      <Form addTask={fetchData} />
+      <Form onClick={fetchData} />
       {/* Fetch data from API */}
       <div>
         <button className="fetch-button" onClick={fetchData}>
