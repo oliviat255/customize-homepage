@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import Form from "./components/Form";
 import './styles.css';
 const KEY = process.env.REACT_APP_GOOGLE_API_KEY
-const URI = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.60037,-119.77567&radius=16093.4&keyword=dispensary&opennow=true&rankby=prominence&key=${KEY}`
+const URI = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.60037,-119.77567&radius=16093.4&keyword=restuarant&opennow=true&rankby=prominence&key=${KEY}`
 
 var requestOptions = {
   method: 'GET', 
@@ -11,6 +12,8 @@ var requestOptions = {
 
 export default function App() {
   const [dispensaries, setDispensaries] = useState(null);
+  
+  // Call API and parse 
   const fetchData = async () => {
     await fetch(URI, requestOptions)
     .then(response => response.text())
@@ -22,7 +25,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Local Favorites</h1>
-
+      <Form addTask={fetchData} />
       {/* Fetch data from API */}
       <div>
         <button className="fetch-button" onClick={fetchData}>
@@ -46,7 +49,7 @@ export default function App() {
                 </div>
               </div>
             );
-          })}
+          })} 
       </div>
       
     </div>
