@@ -9,6 +9,8 @@ This project serves as a POC for customizing a homepage to include local favorit
 Frontend: React, Javascript 
 Backend: Google Maps Platform 
 
+## Work Flow
+To run this application you will need an API key for google places and enable geocoding. Instructions can be found on the [documentation](https://developers.google.com/maps/documentation/places/web-service/get-api-key). Then you can add that key as an environment variable. Once you have done that you can run the application through `npm i` and `npm start`. 
 ## Limitations 
 If this were to be implemented the backend would need to connect to the Blackbird backend. An example for how I would design such a backend can be found here. 
 https://drive.google.com/file/d/1kwdNfnILqK19PM931lZsoVv0seY_74TD/view?usp=sharing
